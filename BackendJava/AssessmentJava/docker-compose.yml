@@ -1,0 +1,19 @@
+version: '3.1'
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DATASOURCE_URL=jdbc:postgresql://localhost:5432/quiz
+      - POSTGRES_JPA_HIBERNATE_DDL_AUTO=update
+      - POSTGRES_DB=quiz
+    ports:
+      - '5432:5432'
